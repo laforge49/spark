@@ -18,8 +18,12 @@
   [role-kw]
   [gem-roles-kw role-kw])
 
-(let [env {env-gem-atoms-kw {:fudge {:name "fudge"}}}]
-  (println (env-gem-atom-kws :fudge))
-  (println (env-gem-atom env :fudge))
-  (println (gem-role-kws :parse))
+(println (env-gem-atom-kws :fudge))
+(println (gem-role-kws :parse))
+(let [env {}
+      env (assoc-in env (env-gem-atom-kws :fudge) (atom {}))
+      _ (println (env-gem-atom env :fudge))
+      _ (reset! (env-gem-atom env :fudge) {:name "fudge"})
+      ]
+  (println @(env-gem-atom env :fudge))
   )
