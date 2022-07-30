@@ -18,8 +18,11 @@
   [role-kw]
   [gem-roles-kw role-kw])
 
-(let [fudge-atom (atom {:name "fudge"
-                        gem-roles-kw {:parse {}}})
+(let [fudge-atom (atom {:name
+                        "fudge"
+                        gem-roles-kw
+                        {:parse
+                         {}}})
       env (-> {}
               (assoc-in (env-gem-atom-kws :fudge) fudge-atom)
               )
