@@ -1,15 +1,15 @@
 (ns spark.kws)
 
-(def env-gem-atoms-kw
-  :spark/env-gem-atoms)
+(def env-gems-atom-kw
+  :spark/env-gems-atom)
 
-(defn env-gem-atom-kws
-  [gem-kw]
-  [env-gem-atoms-kw gem-kw])
+(defn env-gems-atom
+  [env]
+  (get env env-gems-atom-kw))
 
 (defn env-gem-atom
   [env gem-kw]
-  (get-in env (env-gem-atom-kws gem-kw)))
+  (get @(env-gems-atom env) gem-kw))
 
 (def gem-roles-kw
   :spark/gem-roles)
@@ -37,9 +37,12 @@
                              gem-roles-kw
                              :function
                              select-equal-value}]}}}})
-      env (-> {}
-              (assoc-in (env-gem-atom-kws :fudge) fudge-atom)
-              )
+      gems-atom
+      (atom {:fudge
+             fudge-atom})
+      env
+      {env-gems-atom-kw
+       gems-atom}
       ]
   (println @(env-gem-atom env :fudge))
   (println (get-in @fudge-atom (gem-role-kws :parse)))
