@@ -1,10 +1,10 @@
 # spark
 
-FIXME: description
+The life essence of Gems
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Download from https://github.com/laforge49/spark.
 
 ## Usage
 
@@ -30,7 +30,7 @@ FIXME: listing of options this app accepts.
 
 ## License
 
-Copyright © 2022 FIXME
+Copyright © 2022
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
