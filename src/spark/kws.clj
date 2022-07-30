@@ -20,8 +20,9 @@
 
 (let [fudge-atom (atom {:name "fudge"
                         gem-roles-kw {:parse {}}})
-      env {}
-      env (assoc-in env (env-gem-atom-kws :fudge) fudge-atom)
+      env (-> {}
+              (assoc-in (env-gem-atom-kws :fudge) fudge-atom)
+              )
       ]
   (println @(env-gem-atom env :fudge))
   (println (get-in @fudge-atom (gem-role-kws :parse)))
