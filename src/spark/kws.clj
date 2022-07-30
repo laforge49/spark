@@ -18,11 +18,25 @@
   [role-kw]
   [gem-roles-kw role-kw])
 
+(defn select-first-matching-grammar
+  [env]
+  )
+
+(defn select-equal-value
+  [env])
+
 (let [fudge-atom (atom {:name
                         "fudge"
                         gem-roles-kw
                         {:parse
-                         {}}})
+                         {:select-grammars-request
+                          {:function
+                           select-first-matching-grammar
+                           :grammars
+                           [{:value
+                             gem-roles-kw
+                             :function
+                             select-equal-value}]}}}})
       env (-> {}
               (assoc-in (env-gem-atom-kws :fudge) fudge-atom)
               )
