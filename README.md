@@ -1,6 +1,6 @@
 # spark
 
-The life essence of Gems
+The AllSpark of Gems
 
 ## Installation
 
