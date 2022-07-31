@@ -11,12 +11,12 @@
                          :parse/parse
                          {:parse/select-grammars-request
                           {:eval/function-name
-                           "select-first-matching-grammar"
+                           "spark.eval/select-first-matching-grammar"
                            :parse/grammars
                            [{:parse/value
                              kws/gem-roles-kw
                              :eval/function-name
-                             "select-equal-value"}]}}}})
+                             "spark.eval/select-equal-value"}]}}}})
       gems-atom
       (atom {:fudge
              fudge-atom})

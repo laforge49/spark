@@ -17,10 +17,3 @@
 (defn gem-role-kws
   [role-kw]
   [gem-roles-kw role-kw])
-
-(defn select-first-matching-grammar
-  [env]
-  )
-
-(defn select-equal-value
-  [env])

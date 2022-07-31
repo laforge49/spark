@@ -5,6 +5,7 @@
     [spark.debug :as debug]
     [spark.eval :as eval]
     [spark.kws :as kws]
+    [spark.parse :as parse]
     ))
 
 (deftest a-test
