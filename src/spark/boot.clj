@@ -9,9 +9,7 @@
                              "spark.debug/ribbit"}}
                            :roles/parse
                            {:parse/select-grammars-request
-                            {:eval/function-name
-                             "spark.parse/select-first-matching-grammar"
-                             :parse/grammars
+                            {:parse/grammars
                              [{:parse/value
                                :gem/roles
                                :eval/function-name
