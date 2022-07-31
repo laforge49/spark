@@ -1,23 +1,21 @@
 (ns spark.parse
   (:require
+    [spark.eval :as eval]
     [spark.kws :as kws]
     ))
 
 (defn select-first-matching-grammar
   [env]
-  (let [input (:param/input env)
-        parse-role (:param/parse-role env)
+  (let [parse-role (:param/parse-role env)
         grammars (:parse/grammars parse-role)
         ]
     (reduce
       (fn [result grammar]
         (if (some? result)
           result
-          (let [function-name (:eval/function-name grammar)
-                function-symbol (symbol function-name)
-                function (resolve function-symbol)]
-            (function (into env {:param/input input
-                                 :param/grammar grammar})))))
+          (eval/function-eval (into env {:param/function-name (:eval/function-name grammar)
+                               :param/input         (:param/input env)
+                               :param/grammar       grammar}))))
       nil
       grammars)
     ))
