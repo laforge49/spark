@@ -1,6 +1,9 @@
 (ns spark.core
-  (:require [spark.kws :as kws]
-            [spark.eval :as eval])
+  (:require
+    [spark.debug :as debug]
+    [spark.eval :as eval]
+    [spark.kws :as kws]
+    )
   (:gen-class))
 
 (defn -main

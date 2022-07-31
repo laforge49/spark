@@ -7,7 +7,7 @@
                         {:test
                          {:ribbit-request
                           {:function-name
-                           "spark.kws/ribbit"}}
+                           "spark.debug/ribbit"}}
                          :parse
                          {:select-grammars-request
                           {:function-name

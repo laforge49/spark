@@ -1,7 +1,11 @@
 (ns spark.core-test
-  (:require [clojure.test :refer :all]
-            [spark.core]
-            [spark.eval]))
+  (:require
+    [clojure.test :refer :all]
+    [spark.core]
+    [spark.debug :as debug]
+    [spark.eval :as eval]
+    [spark.kws :as kws]
+    ))
 
 (deftest a-test
   (testing "FIXME, I fail."

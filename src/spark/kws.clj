@@ -18,10 +18,6 @@
   [role-kw]
   [gem-roles-kw role-kw])
 
-(defn ribbit
-  [env]
-  (println "Ribbit!"))
-
 (defn select-first-matching-grammar
   [env]
   )
