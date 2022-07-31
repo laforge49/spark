@@ -32,10 +32,10 @@
        gems-atom}
       ]
 
-  (eval/gem-eval (into env {:gem
-                       :fudge
-                       :role
-                       :debug/test
-                       :request
-                       :debug/ribbit-request}))
+  (eval/gem-eval (into env {:param/gem
+                            :fudge
+                            :param/role
+                            :debug/test
+                            :param/request
+                            :debug/ribbit-request}))
   )
