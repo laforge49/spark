@@ -4,7 +4,7 @@
     [spark.kws :as kws]
     ))
 
-(defn select-first-matching-grammar
+(defn select-grammar
   [env]
   (let [parse-role (:param/parse-role env)
         grammars (:parse/grammars parse-role)
@@ -14,8 +14,8 @@
         (if (some? result)
           result
           (eval/function-eval (into env {:param/function-name (:eval/function-name grammar)
-                               :param/input         (:param/input env)
-                               :param/grammar       grammar}))))
+                                         :param/input         (:param/input env)
+                                         :param/grammar       grammar}))))
       nil
       grammars)
     ))
