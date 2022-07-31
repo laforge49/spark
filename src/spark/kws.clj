@@ -18,6 +18,10 @@
   [role-kw]
   [gem-roles-kw role-kw])
 
+(defn ribbit
+  [env]
+  (println "Ribbit!"))
+
 (defn select-first-matching-grammar
   [env]
   )
@@ -28,7 +32,11 @@
 (let [fudge-atom (atom {:name
                         "fudge"
                         gem-roles-kw
-                        {:parse
+                        {:test
+                         {:ribbit-request
+                          {:function
+                           ribbit}}
+                         :parse
                          {:select-grammars-request
                           {:function
                            select-first-matching-grammar
@@ -46,4 +54,19 @@
       ]
   (println @(env-gem-atom env :fudge))
   (println (get-in @fudge-atom (gem-role-kws :parse)))
+
+  (defn gem-eval
+    [env]
+    (let [gem-kw
+          (:gem env)
+          request-kw
+          (:request env)]
+      (println gem-kw)
+      (println request-kw)
+      ))
+
+  (gem-eval (into env {:gem
+                       :fudge
+                       :request
+                       :ribbit-request}))
   )
