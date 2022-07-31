@@ -8,4 +8,11 @@
   )
 
 (defn select-equal-value
-  [env])
+  [env]
+  (let [input (:param/input env)
+        grammer (:param/grammer env)
+        value (:parse/value grammer)]
+    (if (= input value)
+      grammer
+      nil)
+    ))
