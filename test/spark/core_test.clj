@@ -1,7 +1,8 @@
 (ns spark.core-test
   (:require
     [clojure.test :refer :all]
-    [spark.core]
+    [spark.boot :as boot]
+    [spark.core :as core]
     [spark.debug :as debug]
     [spark.eval :as eval]
     [spark.kws :as kws]

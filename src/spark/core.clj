@@ -1,5 +1,6 @@
 (ns spark.core
   (:require
+    [spark.boot :as boot]
     [spark.debug :as debug]
     [spark.eval :as eval]
     [spark.kws :as kws]
