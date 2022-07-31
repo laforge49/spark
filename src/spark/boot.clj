@@ -1,6 +1,7 @@
 (ns spark.boot)
 
-(def env
+(defn add-gems-atom
+  [env]
   (let [fudge-atom (atom {:gem/name  "fudge"
                           :gem/roles {:roles/test
                                       {:debug/ribbit-request
@@ -19,4 +20,4 @@
         (atom {:fudge
                fudge-atom})
         ]
-    {:env/gems-atom-kw gems-atom}))
+    (into env {:env/gems-atom-kw gems-atom})))

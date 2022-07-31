@@ -9,6 +9,6 @@
   [env]
   (println "Ribbit!"))
 
-(eval/gem-eval (into boot/env {:param/gem :fudge
+(eval/gem-eval (into (boot/add-gems-atom {}) {:param/gem :fudge
                                :param/role :roles/test
                                :param/request :debug/ribbit-request}))
