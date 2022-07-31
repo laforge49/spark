@@ -8,14 +8,14 @@
   [env]
   (println "Ribbit!"))
 
-(let [fudge-atom (atom {:identity/name
+(let [fudge-atom (atom {:gem/name
                         "fudge"
                         kws/gem-roles-kw
-                        {:debug/test
+                        {:roles/test
                          {:debug/ribbit-request
                           {:eval/function-name
                            "spark.debug/ribbit"}}
-                         :parse/parse
+                         :roles/parse
                          {:parse/select-grammars-request
                           {:eval/function-name
                            "spark.parse/select-first-matching-grammar"
@@ -35,7 +35,7 @@
   (eval/gem-eval (into env {:param/gem
                             :fudge
                             :param/role
-                            :debug/test
+                            :roles/test
                             :param/request
                             :debug/ribbit-request}))
   )
