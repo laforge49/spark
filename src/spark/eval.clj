@@ -6,10 +6,10 @@
                         kws/gem-roles-kw
                         {:debug/test
                          {:debug/ribbit-request
-                          {:function-name
+                          {:eval/function-name
                            "spark.debug/ribbit"}}
                          :parse/parse
-                         {:select-grammars-request
+                         {:parse/select-grammars-request
                           {:eval/function-name
                            "select-first-matching-grammar"
                            :parse/grammars
@@ -40,7 +40,7 @@
           request
           (request-kw role)
           function-name
-          (:function-name request)
+          (:eval/function-name request)
           function-symbol
           (symbol function-name)
           function
