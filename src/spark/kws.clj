@@ -34,17 +34,17 @@
                         gem-roles-kw
                         {:test
                          {:ribbit-request
-                          {:function
-                           ribbit}}
+                          {:function-name
+                           "spark.kws/ribbit"}}
                          :parse
                          {:select-grammars-request
-                          {:function
-                           select-first-matching-grammar
+                          {:function-name
+                           "select-first-matching-grammar"
                            :grammars
                            [{:value
                              gem-roles-kw
-                             :function
-                             select-equal-value}]}}}})
+                             :function-name
+                             "select-equal-value"}]}}}})
       gems-atom
       (atom {:fudge
              fudge-atom})
@@ -52,21 +52,35 @@
       {env-gems-atom-kw
        gems-atom}
       ]
-  (println @(env-gem-atom env :fudge))
-  (println (get-in @fudge-atom (gem-role-kws :parse)))
 
   (defn gem-eval
     [env]
     (let [gem-kw
           (:gem env)
+          role-kw
+          (:role env)
           request-kw
-          (:request env)]
-      (println gem-kw)
-      (println request-kw)
+          (:request env)
+          gem
+          @(env-gem-atom env gem-kw)
+          role
+          (get-in gem (gem-role-kws role-kw))
+          request
+          (request-kw role)
+          function-name
+          (:function-name request)
+          function-symbol
+          (symbol function-name)
+          function
+          (resolve function-symbol)
+          ]
+      (function (into env request))
       ))
 
   (gem-eval (into env {:gem
                        :fudge
+                       :role
+                       :test
                        :request
                        :ribbit-request}))
   )
