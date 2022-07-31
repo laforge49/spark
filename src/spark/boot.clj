@@ -16,8 +16,6 @@
                                :gem/roles
                                :eval/function-name
                                "spark.parse/select-equal-value"}]}}}}
-        gems-atom
-        (atom {:fudge
-               (atom fudge)})
+        gems-atom (atom {:fudge (atom fudge)})
         ]
     (into env {:env/gems-atom-kw gems-atom})))
