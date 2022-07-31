@@ -1,21 +1,21 @@
 (ns spark.eval
   (:require [spark.kws :as kws]))
 
-(let [fudge-atom (atom {:name
+(let [fudge-atom (atom {:identity/name
                         "fudge"
                         kws/gem-roles-kw
-                        {:test
-                         {:ribbit-request
+                        {:debug/test
+                         {:debug/ribbit-request
                           {:function-name
                            "spark.debug/ribbit"}}
-                         :parse
+                         :parse/parse
                          {:select-grammars-request
-                          {:function-name
+                          {:eval/function-name
                            "select-first-matching-grammar"
-                           :grammars
-                           [{:value
+                           :parse/grammars
+                           [{:parse/value
                              kws/gem-roles-kw
-                             :function-name
+                             :eval/function-name
                              "select-equal-value"}]}}}})
       gems-atom
       (atom {:fudge
@@ -52,7 +52,7 @@
   (gem-eval (into env {:gem
                        :fudge
                        :role
-                       :test
+                       :debug/test
                        :request
-                       :ribbit-request}))
+                       :debug/ribbit-request}))
   )
