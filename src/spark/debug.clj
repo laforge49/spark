@@ -10,7 +10,7 @@
 
 (let [fudge-atom (atom {:gem/name
                         "fudge"
-                        kws/gem-roles-kw
+                        :gem/roles
                         {:roles/test
                          {:debug/ribbit-request
                           {:eval/function-name
@@ -21,7 +21,7 @@
                            "spark.parse/select-first-matching-grammar"
                            :parse/grammars
                            [{:parse/value
-                             kws/gem-roles-kw
+                             :gem/roles
                              :eval/function-name
                              "spark.parse/select-equal-value"}]}}}})
       gems-atom

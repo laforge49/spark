@@ -11,9 +11,6 @@
   [env gem-kw]
   (get @(env-gems-atom env) gem-kw))
 
-(def gem-roles-kw
-  :spark/gem-roles)
-
 (defn gem-role-kws
   [role-kw]
-  [gem-roles-kw role-kw])
+  [:gem/roles role-kw])
