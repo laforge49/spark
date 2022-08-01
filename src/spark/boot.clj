@@ -2,7 +2,7 @@
 
 (defn add-gems-atom
   [env]
-  (let [fudge {:facet/kw    :fudge
+  (let [fudge {:facet/kw    :gem/fudge
                :facet/roles {:roles/test
                              {:debug/ribbit-request
                               {:eval/function-name
@@ -13,6 +13,6 @@
                                :parse/grammars
                                [{:parse/value :facet/roles
                                  :eval/function-name "spark.parse/select-equal-value"}]}}}}
-        gems-atom (atom {:fudge (atom fudge)})
+        gems-atom (atom {:gem/fudge (atom fudge)})
         ]
     (into env {:env/gems-atom-kw gems-atom})))
