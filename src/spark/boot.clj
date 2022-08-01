@@ -2,16 +2,17 @@
 
 (defn add-gems-atom
   [env]
-  (let [fudge {:gem/name  "fudge"
-               :gem/roles {:roles/test
+  (let [fudge {:facet/kw  :fudge
+               :facet/roles {:roles/test
                            {:debug/ribbit-request
                             {:eval/function-name
                              "spark.debug/ribbit"}}
                            :roles/parse
                            {:parse/select-grammars-request
-                            {:parse/grammars
+                            {:eval/function-name "spark.parse/select-grammar"
+                             :parse/grammars
                              [{:parse/value
-                               :gem/roles
+                               :facet/roles
                                :eval/function-name
                                "spark.parse/select-equal-value"}]}}}}
         gems-atom (atom {:fudge (atom fudge)})

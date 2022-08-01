@@ -7,7 +7,7 @@
 (defn select-grammar
   [env]
   (let [gem (:param-gem env)
-        roles (:gem/roles gem)
+        roles (:facet/roles gem)
         parse-role (:roles/parse roles)
         grammars (:parse/grammars parse-role)
         ]
