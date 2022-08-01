@@ -9,6 +9,10 @@
   (:gen-class))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (println)
+  (let [env (boot/add-gems-atom {})]
+    (eval/gem-eval (into env {:param/gem     :gem/fudge
+                              :param/role    :roles/test
+                              :param/request :debug/ribbit-request}))
+    ))
