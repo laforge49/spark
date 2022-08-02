@@ -14,7 +14,7 @@
   (println)
   (try
     (let [env boot/initial-env]
-      (boot/create-gem (into env {:param/gem-kw :gem/fudge}))
+      (boot/create-gems env)
       (eval/gem-eval (into env {:param/gem-kw     :gem/fudge
                                 :param/role    :roles/test
                                 :param/request :debug/ribbit-request}))

@@ -9,7 +9,7 @@
 (defn create-gem
   [env]
   (let [gem-kw (:param/gem-kw env)
-        fudge-value
+        gem-value
         {:facet/kw          gem-kw
          :facet/descriptors {:descriptors/roles
                              {:roles/test
@@ -23,8 +23,17 @@
                                                      {:parse/value        :facet/roles
                                                       :eval/function-name "spark.parse/select-equal-value"}]}}
                               }}}
-        fudge (atom fudge-value)
+        gem (atom gem-value)
         gems-atom (:env/gems-atom-kw env)
         ]
-    (swap! gems-atom assoc gem-kw fudge)
+    (swap! gems-atom assoc gem-kw gem)
     env))
+
+(defn create-role
+  [env]
+  (let [role-kw (:param/role-kw env)]))
+
+(defn create-gems
+  [env]
+  (create-gem (into env {:param/gem-kw :gem/fudge}))
+  )
