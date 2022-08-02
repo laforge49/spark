@@ -1,6 +1,6 @@
 (ns spark.kws)
 
-(defn env-gem-atom
+(defn env-gem
   [env gem-kw]
   (get @(:env/gems-atom-kw env) gem-kw))
 

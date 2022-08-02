@@ -15,7 +15,7 @@
   (let [gem-kw (:param/gem-kw env)
         role-kw (:param/role env)
         request-kw (:param/request env)
-        gem (kws/env-gem-atom env gem-kw)
+        gem (kws/env-gem env gem-kw)
         role (get-in @gem (kws/gem-role-kws role-kw))
         request (request-kw role)
         env (into env {:param/function-name (:eval/function-name request)})

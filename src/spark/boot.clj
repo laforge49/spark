@@ -1,4 +1,5 @@
-(ns spark.boot)
+(ns spark.boot
+  (:require [spark.kws :as kws]))
 
 (def gems-atom
   (atom {}))
@@ -31,7 +32,13 @@
 
 (defn create-role
   [env]
-  (let [role-kw (:param/role-kw env)]))
+  (let [gem-kw (:param/gem-kw env)
+        role-kw (:param/role-kw env)
+        requests (:param/requests env)
+        gem (kws/env-gem env gem-kw)
+        role-kws (kws/gem-role-kws role-kw)]
+    (swap! gem assoc role-kws requests)
+    ))
 
 (defn create-gems
   [env]
