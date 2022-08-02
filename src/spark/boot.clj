@@ -1,10 +1,14 @@
 (ns spark.boot)
 
+(def gems-atom
+  (atom {}))
+
+(def initial-env
+  {:env/gems-atom-kw gems-atom})
+
 (defn add-gems-atom
   [env]
-  (let [gems-atom (atom {})
-        env (into env {:env/gems-atom-kw gems-atom})
-        fudge-value
+  (let [fudge-value
         {:facet/kw    :gem/fudge
          :facet/roles {:roles/test
                        {:debug/ribbit-request

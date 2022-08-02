@@ -13,7 +13,8 @@
   [& args]
   (println)
   (try
-    (let [env (boot/add-gems-atom {})]
+    (let [env boot/initial-env]
+      (boot/add-gems-atom env)
       (eval/gem-eval (into env {:param/gem     :gem/fudge
                                 :param/role    :roles/test
                                 :param/request :debug/ribbit-request}))
