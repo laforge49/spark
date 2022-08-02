@@ -6,4 +6,4 @@
 
 (defn gem-role-kws
   [role-kw]
-  [:facet/roles role-kw])
+  [:facet/descriptors :descriptors/roles role-kw])
