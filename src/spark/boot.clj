@@ -6,7 +6,7 @@
 (def initial-env
   {:env/gems-atom-kw gems-atom})
 
-(defn add-gem-atom
+(defn create-gem
   [env]
   (let [gem-kw (:param/gem-kw env)
         fudge-value
