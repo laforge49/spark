@@ -12,7 +12,7 @@
 
 (defn gem-eval
   [env]
-  (let [gem-kw (:param/gem env)
+  (let [gem-kw (:param/gem-kw env)
         role-kw (:param/role env)
         request-kw (:param/request env)
         gem-value @(kws/env-gem-atom env gem-kw)

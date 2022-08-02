@@ -6,10 +6,11 @@
 (def initial-env
   {:env/gems-atom-kw gems-atom})
 
-(defn add-gems-atom
+(defn add-gem-atom
   [env]
-  (let [fudge-value
-        {:facet/kw    :gem/fudge
+  (let [gem-kw (:param/gem-kw env)
+        fudge-value
+        {:facet/kw    gem-kw
          :facet/roles {:roles/test
                        {:debug/ribbit-request
                         {:eval/function-name "spark.debug/ribbit"}}
@@ -22,5 +23,5 @@
         fudge (atom fudge-value)
         gems-atom (:env/gems-atom-kw env)
         ]
-    (swap! gems-atom assoc :gem/fudge fudge)
+    (swap! gems-atom assoc gem-kw fudge)
     env))
