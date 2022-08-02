@@ -17,8 +17,10 @@
                        :roles/parse
                        {:parse/select-grammars-request
                         {:eval/function-name "spark.parse/select-grammar"
-                         :parse/grammars     {:parse/value        :facet/roles
-                                              :eval/function-name "spark.parse/select-equal-value"}}}
+                         :parse/grammars     [{:parse/value        :facet/kw
+                                               :eval/function-name "spark.parse/select-equal-value"}
+                                              {:parse/value        :facet/roles
+                                               :eval/function-name "spark.parse/select-equal-value"}]}}
                        }}
         fudge (atom fudge-value)
         gems-atom (:env/gems-atom-kw env)
