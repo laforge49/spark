@@ -19,6 +19,7 @@
                          :parse/grammars     {:parse/value        :facet/roles
                                               :eval/function-name "spark.parse/select-equal-value"}}}
                        }}
+        gems-atom (:env/gems-atom-kw env)
         ]
     (reset! gems-atom
             {:gem/fudge (atom fudge-value)})
