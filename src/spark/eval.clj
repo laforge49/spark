@@ -16,8 +16,8 @@
         role-kw (:param/role env)
         request-kw (:param/request env)
         gem (kws/env-gem env gem-kw)
-        role (get-in @gem (kws/gem-role-kws role-kw))
-        request (request-kw role)
+        requests (get-in @gem (kws/gem-requests-kws role-kw))
+        request (request-kw requests)
         env (into env {:param/function-name (:eval/function-name request)})
         env (into env request)
         ]
