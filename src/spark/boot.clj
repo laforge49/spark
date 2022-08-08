@@ -32,22 +32,23 @@
         role-kw (:param/role-kw env)
         request-kw (:param/request-kw env)
         request (:param/request env)
-        role-kws (kws/gem-request-kws role-kw)
-        requests (get-in gem role-kws)
+        requests-kws (kws/gem-requests-kws role-kw)
+        requests (get-in @gem requests-kws)
         requests (into requests {request-kw request})]
-    (swap! gem assoc-in role-kws requests)))
+    (swap! gem assoc-in requests-kws requests)))
 
 (defn create-gems
   [env]
   (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))
         env (into env {:param/gem gem})]
-    (create-role (into env {:param/role-kw  :roles/test
-                            :param/requests {:debug/ribbit-request
-                                             {:eval/function-name "spark.debug/ribbit"}}}))
-    (create-role (into env {:param/role-kw  :roles/parse
-                            :param/requests {:parse/select-grammars-request
-                                             {:eval/function-name "spark.parse/select-grammar"
-                                              :parse/grammars     [{:parse/value        :facet/kw
-                                                                    :eval/function-name "spark.parse/select-equal-value"}
-                                                                   {:parse/value        :facet/roles
-                                                                    :eval/function-name "spark.parse/select-equal-value"}]}}}))))
+    (let [env (into env {:param/role-kw :roles/test})]
+      (create-role env)
+      (create-request (into env {:param/request-kw :debug/ribbit-request
+                                 :param/request {:eval/function-name "spark.debug/ribbit"}})))
+    (let [env (into env {:param/role-kw :roles/parse})]
+      (create-role (into env {:param/requests {:parse/select-grammars-request
+                                               {:eval/function-name "spark.parse/select-grammar"
+                                                :parse/grammars     [{:parse/value        :facet/kw
+                                                                      :eval/function-name "spark.parse/select-equal-value"}
+                                                                     {:parse/value        :facet/roles
+                                                                      :eval/function-name "spark.parse/select-equal-value"}]}}})))))
