@@ -46,9 +46,10 @@
       (create-request (into env {:param/request-kw :debug/ribbit-request
                                  :param/request {:eval/function-name "spark.debug/ribbit"}})))
     (let [env (into env {:param/role-kw :roles/parse})]
-      (create-role (into env {:param/requests {:parse/select-grammars-request
-                                               {:eval/function-name "spark.parse/select-grammar"
-                                                :parse/grammars     [{:parse/value        :facet/kw
-                                                                      :eval/function-name "spark.parse/select-equal-value"}
-                                                                     {:parse/value        :facet/roles
-                                                                      :eval/function-name "spark.parse/select-equal-value"}]}}})))))
+      (create-role env)
+      (create-request (into env {:param/request-kw :parse/select-grammars-request
+                                 :param/request {:eval/function-name "spark.parse/select-grammar"
+                                                 :parse/grammars     [{:parse/value        :facet/kw
+                                                                       :eval/function-name "spark.parse/select-equal-value"}
+                                                                      {:parse/value        :facet/roles
+                                                                       :eval/function-name "spark.parse/select-equal-value"}]}})))))
