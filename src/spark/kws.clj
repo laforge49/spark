@@ -7,3 +7,7 @@
 (defn gem-role-kws
   [role-kw]
   [:facet/descriptors :descriptors/roles role-kw])
+
+(defn gem-request-kws
+  [role-kw request-kw]
+  [:facet/descriptors :descriptors/roles role-kw request-kw])

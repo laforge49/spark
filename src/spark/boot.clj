@@ -12,18 +12,7 @@
   (let [gem-kw (:param/gem-kw env)
         gem-value
         {:facet/kw          gem-kw
-         :facet/descriptors {:descriptors/roles
-                             {:roles/test
-                              {:debug/ribbit-request
-                               {:eval/function-name "spark.debug/ribbit"}}
-                              :roles/parse
-                              {:parse/select-grammars-request
-                               {:eval/function-name "spark.parse/select-grammar"
-                                :parse/grammars     [{:parse/value        :facet/kw
-                                                      :eval/function-name "spark.parse/select-equal-value"}
-                                                     {:parse/value        :facet/roles
-                                                      :eval/function-name "spark.parse/select-equal-value"}]}}
-                              }}}
+         :facet/descriptors {:descriptors/roles {}}}
         gem (atom gem-value)
         gems-atom (:env/gems-atom-kw env)
         ]
@@ -37,10 +26,21 @@
         requests (:param/requests env)
         gem (kws/env-gem env gem-kw)
         role-kws (kws/gem-role-kws role-kw)]
-    (swap! gem assoc role-kws requests)
+    (swap! gem assoc-in role-kws requests)
     ))
 
 (defn create-gems
   [env]
-  (create-gem (into env {:param/gem-kw :gem/fudge}))
-  )
+  (let [env (into env {:param/gem-kw :gem/fudge})]
+    (create-gem env)
+    (create-role (into env {:param/role-kw  :roles/test
+                            :param/requests {:debug/ribbit-request
+                                             {:eval/function-name "spark.debug/ribbit"}}}))
+    (create-role (into env {:param/role-kw  :roles/parse
+                            :param/requests {:parse/select-grammars-request
+                                             {:eval/function-name "spark.parse/select-grammar"
+                                              :parse/grammars     [{:parse/value        :facet/kw
+                                                                    :eval/function-name "spark.parse/select-equal-value"}
+                                                                   {:parse/value        :facet/roles
+                                                                    :eval/function-name "spark.parse/select-equal-value"}]}}}))
+    ))
