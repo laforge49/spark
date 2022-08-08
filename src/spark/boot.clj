@@ -49,6 +49,8 @@
       (create-request (into env {:param/request-kw :parse/select-grammars-request
                                  :param/request {:eval/function-name "spark.parse/select-grammar"
                                                  :parse/grammars     [{:parse/value        :facet/kw
-                                                                       :eval/function-name "spark.parse/select-equal-value"}
+                                                                       :eval/function-name "spark.parse/select-equal-value"
+                                                                       :parse/grammar-kw :gem/facet-kw}
                                                                       {:parse/value        :facet/roles
-                                                                       :eval/function-name "spark.parse/select-equal-value"}]}})))))
+                                                                       :eval/function-name "spark.parse/select-equal-value"
+                                                                       :parse/grammar-kw :gem/facit-roles}]}})))))
