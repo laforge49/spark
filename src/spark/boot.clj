@@ -14,16 +14,15 @@
         {:facet/kw          gem-kw
          :facet/descriptors {:descriptors/roles {}}}
         gem (atom gem-value)
-        gems-atom (:env/gems-atom-kw env)
-        ]
+        gems-atom (:env/gems-atom-kw env)]
     (swap! gems-atom assoc gem-kw gem)
     gem))
 
 (defn create-role
   [env]
-  (let [role-kw (:param/role-kw env)
+  (let [gem (:param/gem env)
+        role-kw (:param/role-kw env)
         requests (:param/requests env)
-        gem (:param/gem env)
         role-kws (kws/gem-role-kws role-kw)]
     (swap! gem assoc-in role-kws requests)))
 
