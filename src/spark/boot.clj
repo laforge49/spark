@@ -28,19 +28,19 @@
 
 (defn create-request
   [env]
-  (let [gem-kw (:param/gem-kw env)
+  (let [gem (:param/gem env)
         role-kw (:param/role-kw env)
-        request-kw (:param/request-kw env)]))
+        request-kw (:param/request-kw env)
+        role-kws (kws/gem-role-kws role-kw)]))
 
 (defn create-gems
   [env]
-  (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))]
-    (create-role (into env {:param/gem      gem
-                            :param/role-kw  :roles/test
+  (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))
+        env (into env {:param/gem gem})]
+    (create-role (into env {:param/role-kw  :roles/test
                             :param/requests {:debug/ribbit-request
                                              {:eval/function-name "spark.debug/ribbit"}}}))
-    (create-role (into env {:param/gem      gem
-                            :param/role-kw  :roles/parse
+    (create-role (into env {:param/role-kw  :roles/parse
                             :param/requests {:parse/select-grammars-request
                                              {:eval/function-name "spark.parse/select-grammar"
                                               :parse/grammars     [{:parse/value        :facet/kw
