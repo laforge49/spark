@@ -65,11 +65,9 @@
       (create-role env)
       (let [env (into env {:param/request-kw :parse/select-grammars-request})]
         (create-request (into env {:param/function-name "spark.parse/select-grammar"}))
-        #_:parse/selectors
-        #_[{:parse/value        :facet/kw
-            :eval/function-name "spark.parse/select-equal-value"
-            :parse/grammar-kw   :gem/facet-kw}
-           {:parse/value        :facet/roles
-            :eval/function-name "spark.parse/select-equal-value"
-            :parse/grammar-kw   :gem/facit-roles}]
-        ))))
+        (create-selector (into env {:param/grammar-kw :gem/facet-kw
+                                    :param/function-name "spark.parse/select-equal-value"
+                                    :param/value :facet/kw}))
+        (create-selector (into env {:param/grammar-kw :gem/facit-roles
+                                    :param/function-name "spark.parse/select-equal-value"
+                                    :param/value :facet/roles}))))))
