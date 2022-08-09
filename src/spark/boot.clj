@@ -36,6 +36,23 @@
         requests (into requests {request-kw {:eval/function-name function-name}})]
     (swap! gem assoc-in requests-kws requests)))
 
+(defn create-selector
+  [env]
+  (let [gem (:param/gem env)
+        role-kw (:param/role-kw env)
+        request-kw (:param/request-kw env)
+        grammar-kw (:param/grammar-kw env)
+        function-name (:param/function-name env)
+        value (:param/value env)
+        selectors-kws (kws/gem-selectors-kws role-kw request-kw)
+        selector {:parse/grammar-kw   grammar-kw
+                  :eval/function-name function-name}
+        selector (if (some? value)
+                   (into selector {:parse/value value})
+                   selector)
+        selectors (get-in @gem selectors-kws [])]
+    (swap! gem assoc-in selectors-kws (conj selectors selector))))
+
 (defn create-gems
   [env]
   (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))
