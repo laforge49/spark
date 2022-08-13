@@ -39,12 +39,10 @@
 (defn create-selector
   [env]
   (let [gem (:param/gem env)
-        role-kw (:param/role-kw env)
-        request-kw (:param/request-kw env)
         grammar-kw (:param/grammar-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
-        selectors-kws (kws/gem-selectors-kws role-kw request-kw)
+        selectors-kws (kws/gem-selectors-kws)
         selector {:parse/grammar-kw   grammar-kw
                   :eval/function-name function-name}
         selector (if (some? value)
@@ -57,6 +55,12 @@
   [env]
   (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))
         env (into env {:param/gem gem})]
+    (create-selector (into env {:param/grammar-kw :gem/facet-kw
+                                :param/function-name "spark.parse/select-equal-value"
+                                :param/value :facet/kw}))
+    (create-selector (into env {:param/grammar-kw :gem/facit-roles
+                                :param/function-name "spark.parse/select-equal-value"
+                                :param/value :facet/roles}))
     (let [env (into env {:param/role-kw :roles/test})]
       (create-role env)
       (let [env (into env {:param/request-kw :debug/ribbit-request})]
@@ -65,9 +69,5 @@
       (create-role env)
       (let [env (into env {:param/request-kw :parse/select-grammars-request})]
         (create-request (into env {:param/function-name "spark.parse/select-grammar"}))
-        (create-selector (into env {:param/grammar-kw :gem/facet-kw
-                                    :param/function-name "spark.parse/select-equal-value"
-                                    :param/value :facet/kw}))
-        (create-selector (into env {:param/grammar-kw :gem/facit-roles
-                                    :param/function-name "spark.parse/select-equal-value"
-                                    :param/value :facet/roles}))))))
+        ))
+    (println @gem)))

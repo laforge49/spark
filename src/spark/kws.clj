@@ -17,5 +17,5 @@
   [:facet/descriptors :descriptors/roles role-kw :role/requests request-kw])
 
 (defn gem-selectors-kws
-  [role-kw request-kw]
-  [:facet/descriptors :descriptors/roles role-kw :role/requests request-kw :parse/selectors])
+  []
+  [:facet/descriptors :parse/selectors])
