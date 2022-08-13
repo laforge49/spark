@@ -1,5 +1,6 @@
 (ns spark.boot
-  (:require [spark.kws :as kws]))
+  (:require [spark.kws :as kws]
+            [tupelo.parse.yaml :as yaml]))
 
 (def gems-atom
   (atom {}))
@@ -70,4 +71,7 @@
       (let [env (into env {:param/request-kw :parse/select-grammars-request})]
         (create-request (into env {:param/function-name "spark.parse/select-grammar"}))
         ))
-    (println @gem)))
+    (println @gem)
+    (println)
+    #_ (println (yaml/edn->yaml @gem))
+    ))
