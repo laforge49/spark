@@ -1,6 +1,6 @@
 (ns spark.boot
   (:require [spark.kws :as kws]
-            [tupelo.parse.yaml :as yaml]))
+            [clj-yaml.core :as yaml]))
 
 (def gems-atom
   (atom {}))
@@ -56,22 +56,22 @@
   [env]
   (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))
         env (into env {:param/gem gem})]
-    (create-selector (into env {:param/grammar-kw :gem/facet-kw
+    #_ (create-selector (into env {:param/grammar-kw :gem/facet-kw
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value :facet/kw}))
-    (create-selector (into env {:param/grammar-kw :gem/facit-roles
+    #_ (create-selector (into env {:param/grammar-kw :gem/facit-roles
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value :facet/roles}))
-    (let [env (into env {:param/role-kw :roles/test})]
+    #_ (let [env (into env {:param/role-kw :roles/test})]
       (create-role env)
       (let [env (into env {:param/request-kw :debug/ribbit-request})]
         (create-request (into env {:param/function-name "spark.debug/ribbit"}))))
-    (let [env (into env {:param/role-kw :roles/parse})]
+    #_ (let [env (into env {:param/role-kw :roles/parse})]
       (create-role env)
       (let [env (into env {:param/request-kw :parse/select-grammars-request})]
         (create-request (into env {:param/function-name "spark.parse/select-grammar"}))
         ))
     (println @gem)
     (println)
-    #_ (println (yaml/edn->yaml @gem))
+    (println (yaml/generate-string @gem))
     ))
