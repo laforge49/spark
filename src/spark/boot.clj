@@ -12,7 +12,7 @@
   [env]
   (let [gem-kw (:param/gem-kw env)
         gem-value
-        {:facet/kw          gem-kw
+        {:facet/id          gem-kw
          :facet/descriptors {:descriptors/roles {}}}
         gem (atom gem-value)
         gems-atom (:env/gems-atom-kw env)]
@@ -58,7 +58,7 @@
         env (into env {:param/gem gem})]
     #_ (create-selector (into env {:param/grammar-kw :gem/facet-kw
                                 :param/function-name "spark.parse/select-equal-value"
-                                :param/value :facet/kw}))
+                                :param/value :facet/id}))
     #_ (create-selector (into env {:param/grammar-kw :gem/facit-roles
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value :facet/roles}))
