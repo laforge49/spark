@@ -1,5 +1,6 @@
 (ns spark.boot
-  (:require [spark.kws :as kws]))
+  (:require [spark.kws :as kws]
+            [spark.pretty :as pretty]))
 
 (def gems-atom
   (atom {}))
@@ -71,4 +72,5 @@
         (create-request (into env {:param/function-name "spark.parse/select-grammar"}))
         ))
     (println @gem)
+    (pretty/debug @gem)
     ))
