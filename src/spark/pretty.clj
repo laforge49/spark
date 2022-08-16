@@ -6,20 +6,19 @@
   (let [value (:param/value env)
         initial-indent (get env :param/initial-indent 0)
         indent-increment (get env :param/indent-increment 2)]
-    ;(println :value value)
     (cond
-      #_(vector? value)
-      #_(reduce
-          (fn [lst item]
-            (println :item item)
-            (let [ivs (asString- (into env {:param/value item}))
-                  _ (println :ivs ivs)
-                  iv0 (string/join ["- " (first ivs)])
-                  ivs (assoc ivs 0 iv0)]
-              lst ())
-            lst)
-          []
-          value)
+      (vector? value)
+      (let [prefix (get env :param/prefix "")
+            first-prefix (string/join [prefix "- "])]
+        (first
+          (reduce
+            (fn [[lst prefix] item]
+              (let [ivs (asString- (into env {:param/value item}))
+                    lst (into lst ivs)
+                    ]
+                [lst first-prefix]))
+            [[] first-prefix]
+            value)))
       (map? value)
       (let [prefix (get env :param/prefix "")
             unprefix ""]
