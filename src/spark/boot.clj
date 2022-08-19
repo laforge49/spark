@@ -21,14 +21,16 @@
 
 (defn create-role
   [env]
-  (let [gem (:param/gem env)
+  (let [gem-kw (:param/gem-kw env)
+        gem (kws/env-gem env gem-kw)
         role-kw (:param/role-kw env)
         requests-kws (kws/gem-requests-kws role-kw)]
     (swap! gem assoc-in requests-kws {})))
 
 (defn create-request
   [env]
-  (let [gem (:param/gem env)
+  (let [gem-kw (:param/gem-kw env)
+        gem (kws/env-gem env gem-kw)
         role-kw (:param/role-kw env)
         request-kw (:param/request-kw env)
         function-name (:param/function-name env)
@@ -58,8 +60,7 @@
 (defn create-gems
   [env]
   (let [env (into env {:param/gem-kw :gem/fudge})
-        gem (create-gem env)
-        env (into env {:param/gem gem})]
+        gem (create-gem env)]
     (create-selector (into env {:param/grammar-kw    :gem/facet-kw
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value         :facet/id}))
@@ -73,6 +74,6 @@
       (create-request (into env {:param/request-kw     :debug/print-value
                                  :param/function-name  "spark.debug/print-value"
                                  :param/request-params {:param/value "Sam I am"}})))
-  (println @gem)
-  (pretty/debug @gem)
-  ))
+    (println @gem)
+    (pretty/debug @gem)
+    ))

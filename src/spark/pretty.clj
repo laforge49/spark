@@ -18,7 +18,7 @@
           (reduce
             (fn [[lst prefix] item]
               (let [ivs (asString- (into env {:param/prefix prefix
-                                              :param/value item}))
+                                              :param/value  item}))
                     lst (into lst ivs)
                     ]
                 [lst (string/join [unprefix "- "])]))
@@ -31,11 +31,11 @@
             (fn [[lst prefix] [k v]]
               (let [env (into env {:param/prefix prefix})
                     kv (first (asString- (into env {:param/prefix prefix
-                                                    :param/value k})))
+                                                    :param/value  k})))
                     kpv (string/join [kv ":"])
                     lst (conj lst kpv)
                     lst (into lst (asString- (into env {:param/prefix (string/join unprefix "  ")
-                                                        :param/value          v})))]
+                                                        :param/value  v})))]
                 [lst unprefix]))
             [[] prefix]
             value)))
