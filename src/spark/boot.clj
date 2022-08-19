@@ -66,17 +66,15 @@
                                 :param/value         :facet/roles}))
     (let [env (into env {:param/role-kw :roles/test})]
       (create-role env)
-      (let [env (into env {:param/request-kw :debug/ribbit-request})]
-        (create-request (into env {:param/function-name "spark.debug/ribbit"})))
-      (let [env (into env {:param/request-kw :debug/print-value
-                           :param/request-params {:param/value "Sam I am"}})
-            _ (create-request (into env {:param/function-name "spark.debug/print-value"}))])
-      )
-    (let [env (into env {:param/role-kw :roles/parse})]
-      (create-role env)
-      (let [env (into env {:param/request-kw :parse/select-grammars-request})]
-        (create-request (into env {:param/function-name "spark.parse/select-grammar"}))
-        ))
-    (println @gem)
-    (pretty/debug @gem)
-    ))
+      (create-request (into env {:param/request-kw    :debug/ribbit-request
+                                 :param/function-name "spark.debug/ribbit"}))
+      (create-request (into env {:param/request-kw     :debug/print-value
+                                 :param/function-name  "spark.debug/print-value"
+                                 :param/request-params {:param/value "Sam I am"}})))
+  (let [env (into env {:param/role-kw :roles/parse})]
+    (create-role env)
+    (create-request (into env {:param/request-kw    :parse/select-grammars-request
+                               :param/function-name "spark.parse/select-grammar"})))
+  (println @gem)
+  (pretty/debug @gem)
+  ))
