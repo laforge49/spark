@@ -21,7 +21,7 @@
 (defn select-equal-value
   [env]
   (let [input (:param/input env)
-        selector (:param/selector)
+        selector (:param/selector env)
         grammar-kw (:parse/grammar-kw selector)
         value (:parse/value selector)]
     (if (= input value)
