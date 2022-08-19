@@ -16,10 +16,10 @@
     (let [env boot/initial-env]
       (boot/create-gems env)
       (eval/gem-eval (into env {:param/gem-kw     :gem/fudge
-                                :param/role    :roles/test
+                                :param/role-kw    :roles/test
                                 :param/request :debug/ribbit-request}))
       (eval/gem-eval (into env {:param/gem-kw     :gem/fudge
-                                :param/role    :roles/test
+                                :param/role-kw    :roles/test
                                 :param/request :debug/print-value}))
       )
     (println "Fin")
