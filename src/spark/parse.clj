@@ -1,33 +1,30 @@
 (ns spark.parse
   (:require
     [spark.eval :as eval]
-    [spark.kws :as kws]
-    ))
+    [spark.kws :as kws]))
 
 (defn select-grammar
   [env]
   (let [gem (:param-gem env)
-        parse-requests (get-in (kws/gem-requests-kws :roles/parse) @gem)
-        select-grammars (:parse/select-grammars-request parse-requests)
-        grammars (:parse/grammars select-grammars)
-        ]
+        select-grammars-request (get-in @gem (kws/gem-request-kws :roles/parse :parse/select-grammars-request))
+        selectors (get-in @gem (kws/gem-selectors-kws))]
     (reduce
-      (fn [result grammar]
+      (fn [result selector]
         (if (some? result)
           result
-          (eval/function-eval (into env {:param/function-name (:eval/function-name grammar)
-                                         :param/input         (:param/input env)
-                                         :param/grammar       grammar}))))
+          (eval/function-eval (into env {:param/function-name (:eval/function-name selector)
+                                         :param/selector       selector}))))
       nil
-      grammars)
+      selectors)
     ))
 
 (defn select-equal-value
   [env]
   (let [input (:param/input env)
-        grammar (:param/grammar env)
-        value (:parse/value grammar)]
+        selector (:param/selector)
+        grammar-kw (:parse/grammar-kw selector)
+        value (:parse/value selector)]
     (if (= input value)
-      grammar
+      grammar-kw
       nil)
     ))
