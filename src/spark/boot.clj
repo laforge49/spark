@@ -32,9 +32,11 @@
         role-kw (:param/role-kw env)
         request-kw (:param/request-kw env)
         function-name (:param/function-name env)
+        request-params (get env :param/request-params {})
+        request {request-kw (into {:eval/function-name function-name} request-params)}
         requests-kws (kws/gem-requests-kws role-kw)
         requests (get-in @gem requests-kws)
-        requests (into requests {request-kw {:eval/function-name function-name}})]
+        requests (into requests request)]
     (swap! gem assoc-in requests-kws requests)))
 
 (defn create-selector
@@ -59,17 +61,16 @@
     (create-selector (into env {:param/grammar-kw    :gem/facet-kw
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value         :facet/id}))
-    (create-selector (into env {:param/grammar-kw    :gem/facit-roles
+    (create-selector (into env {:param/grammar-kw    :gem/facet-roles
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value         :facet/roles}))
     (let [env (into env {:param/role-kw :roles/test})]
       (create-role env)
       (let [env (into env {:param/request-kw :debug/ribbit-request})]
         (create-request (into env {:param/function-name "spark.debug/ribbit"})))
-      (let [env (into env {:param/request-kw :debug/print-value})
-            _ (create-request (into env {:param/function-name "spark.debug/print-value"}))
-            request-kws (kws/gem-request-kws :roles/test :debug/print-value)]
-        (swap! gem assoc-in (conj request-kws :param/value) "foo bar"))
+      (let [env (into env {:param/request-kw :debug/print-value
+                           :param/request-params {:param/value "Sam I am"}})
+            _ (create-request (into env {:param/function-name "spark.debug/print-value"}))])
       )
     (let [env (into env {:param/role-kw :roles/parse})]
       (create-role env)
