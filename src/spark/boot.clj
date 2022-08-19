@@ -41,7 +41,8 @@
 
 (defn create-selector
   [env]
-  (let [gem (:param/gem env)
+  (let [gem-kw (:param/gem-kw env)
+        gem (kws/env-gem env gem-kw)
         grammar-kw (:param/grammar-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
