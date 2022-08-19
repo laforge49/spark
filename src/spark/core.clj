@@ -21,8 +21,8 @@
       (eval/gem-eval (into env {:param/gem-kw  :gem/fudge
                                 :param/role-kw :roles/test
                                 :param/request :debug/print-value}))
-      (println :gem/facet-kw (parse/select-grammar (into env {:param/gem-kw :gem/fudge
-                                                              :param/input  :gem/facet-kw})))
+      (println :facet/id (parse/select-grammar (into env {:param/gem-kw :gem/fudge
+                                                              :param/input  :facet/id})))
       )
     (println "Fin")
     (catch Exception e

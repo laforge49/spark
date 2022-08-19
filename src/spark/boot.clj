@@ -61,12 +61,12 @@
   [env]
   (let [env (into env {:param/gem-kw :gem/fudge})
         gem (create-gem env)]
-    (create-selector (into env {:param/grammar-kw    :gem/facet-kw
+    (create-selector (into env {:param/grammar-kw    :gem/facet-id-grammar
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value         :facet/id}))
-    (create-selector (into env {:param/grammar-kw    :gem/facet-roles
+    (create-selector (into env {:param/grammar-kw    :gem/facet-descriptors-grammar
                                 :param/function-name "spark.parse/select-equal-value"
-                                :param/value         :facet/roles}))
+                                :param/value         :facet/descriptors}))
     (let [env (into env {:param/role-kw :roles/test})]
       (create-role env)
       (create-request (into env {:param/request-kw    :debug/ribbit-request
