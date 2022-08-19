@@ -15,13 +15,13 @@
   (try
     (let [env boot/initial-env]
       (boot/create-gems env)
-      (eval/gem-eval (into env {:param/gem-kw  :gem/fudge
+      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-grammar
                                 :param/role-kw :roles/test
                                 :param/request :debug/ribbit-request}))
-      (eval/gem-eval (into env {:param/gem-kw  :gem/fudge
+      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-grammar
                                 :param/role-kw :roles/test
                                 :param/request :debug/print-value}))
-      (println :facet/id (parse/select-grammar (into env {:param/gem-kw :gem/fudge
+      (println :facet/id (parse/select-grammar (into env {:param/gem-kw :gem/gem-grammar
                                                               :param/input  :facet/id})))
       )
     (println "Fin")
