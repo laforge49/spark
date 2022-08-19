@@ -6,7 +6,6 @@
 (defn select-grammar
   [env]
   (let [gem (:param-gem env)
-        select-grammars-request (get-in @gem (kws/gem-request-kws :roles/parse :parse/select-grammars-request))
         selectors (get-in @gem (kws/gem-selectors-kws))]
     (reduce
       (fn [result selector]

@@ -71,10 +71,6 @@
       (create-request (into env {:param/request-kw     :debug/print-value
                                  :param/function-name  "spark.debug/print-value"
                                  :param/request-params {:param/value "Sam I am"}})))
-  (let [env (into env {:param/role-kw :roles/parse})]
-    (create-role env)
-    (create-request (into env {:param/request-kw    :parse/select-grammars-request
-                               :param/function-name "spark.parse/select-grammar"})))
   (println @gem)
   (pretty/debug @gem)
   ))
