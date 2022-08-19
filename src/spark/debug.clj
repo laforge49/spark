@@ -8,3 +8,7 @@
 (defn ribbit
   [env]
   (println "Ribbit!"))
+
+(defn print-value
+  [env]
+  (println (:param/value env)))

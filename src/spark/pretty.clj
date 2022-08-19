@@ -7,26 +7,25 @@
 
 (defn asString-
   [env]
-  (let [value (:param/value env)
-        initial-indent (get env :param/initial-indent 0)
-        indent-increment (get env :param/indent-increment 2)]
+  (let [prefix (get env :param/prefix "")
+        length (count prefix)
+        unprefix (blanks length)
+        value (:param/value env)]
     (cond
-      #_ (vector? value)
-      #_ (let [prefix (get env :param/prefix "")
-            first-prefix (string/join [prefix "- "])]
+      (vector? value)
+      (let [first-prefix (string/join [prefix "- "])]
         (first
           (reduce
             (fn [[lst prefix] item]
-              (let [ivs (asString- (into env {:param/value item}))
+              (let [ivs (asString- (into env {:param/prefix prefix
+                                              :param/value item}))
                     lst (into lst ivs)
                     ]
-                [lst first-prefix]))
+                [lst (string/join [unprefix "- "])]))
             [[] first-prefix]
             value)))
       (map? value)
-      (let [prefix (get env :param/prefix "")
-            length (count prefix)
-            unprefix (blanks length)]
+      (let []
         (first
           (reduce
             (fn [[lst prefix] [k v]]
@@ -42,7 +41,7 @@
             value)))
       :else
       (let [prefix (get env :param/prefix "")
-            s (str value)
+            s (pr-str value)
             j (string/join [prefix s])]
         [j]))))
 
