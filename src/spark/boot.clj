@@ -33,10 +33,10 @@
         request-kw (:param/request-kw env)
         function-name (:param/function-name env)
         request-params (get env :param/request-params {})
-        request {request-kw (into {:eval/function-name function-name} request-params)}
+        request (into {:eval/function-name function-name} request-params)
         requests-kws (kws/gem-requests-kws role-kw)
         requests (get-in @gem requests-kws)
-        requests (into requests request)]
+        requests (into requests {request-kw request})]
     (swap! gem assoc-in requests-kws requests)))
 
 (defn create-selector
