@@ -56,7 +56,8 @@
 
 (defn create-gems
   [env]
-  (let [gem (create-gem (into env {:param/gem-kw :gem/fudge}))
+  (let [env (into env {:param/gem-kw :gem/fudge})
+        gem (create-gem env)
         env (into env {:param/gem gem})]
     (create-selector (into env {:param/grammar-kw    :gem/facet-kw
                                 :param/function-name "spark.parse/select-equal-value"
