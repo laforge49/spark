@@ -18,13 +18,13 @@
       selectors)
     ))
 
-(defn select-equal-value
+(defn select-equal-key
   [env]
-  (let [input (:param/input env)
+  (let [entry-input (:param/input env)
+        key-input (key entry-input)
         selector (:param/selector env)
         schema-kw (:parse/schema-kw selector)
         value (:parse/value selector)]
-    (if (= input value)
+    (if (= key-input value)
       schema-kw
-      nil)
-    ))
+      nil)))

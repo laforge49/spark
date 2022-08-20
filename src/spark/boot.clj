@@ -62,10 +62,10 @@
   (let [env (into env {:param/gem-kw :gem/gem-schema})
         gem (create-gem env)]
     (create-selector (into env {:param/schema-kw     :gem/facet-id-schema
-                                :param/function-name "spark.parse/select-equal-value"
+                                :param/function-name "spark.parse/select-equal-key"
                                 :param/value         :facet/id}))
     (create-selector (into env {:param/schema-kw     :gem/facet-descriptors-schema
-                                :param/function-name "spark.parse/select-equal-value"
+                                :param/function-name "spark.parse/select-equal-key"
                                 :param/value         :facet/descriptors}))
     (let [env (into env {:param/role-kw :roles/test})]
       (create-role env)
