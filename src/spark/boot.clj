@@ -60,7 +60,7 @@
 
 (defn create-gems
   [env]
-  (let [env (into env {:param/gem-kw :gem/gem-schema})
+  (let [env (into env {:param/gem-kw :gem/facets-schema})
         gem (create-gem env)]
     (create-selector (into env {:param/schema-kw     :gem/facet-id-schema
                                 :param/function-name "spark.parse/select-equal-key"
@@ -77,6 +77,6 @@
                                  :param/request-params {:param/value "Sam I am"}})))
     (println @gem)
     (pretty/debug @gem)
-    (println :facet/id (parse/select-schema (into env {:param/gem-kw :gem/gem-schema
+    (println :facet/id (parse/select-schema (into env {:param/gem-kw :gem/facets-schema
                                                        :param/input  (first @gem)})))
     ))

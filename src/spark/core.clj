@@ -15,10 +15,10 @@
   (try
     (let [env boot/initial-env]
       (boot/create-gems env)
-      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-schema
+      (eval/gem-eval (into env {:param/gem-kw  :gem/facets-schema
                                 :param/role-kw :roles/test
                                 :param/request :debug/ribbit-request}))
-      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-schema
+      (eval/gem-eval (into env {:param/gem-kw  :gem/facets-schema
                                 :param/role-kw :roles/test
                                 :param/request :debug/print-value})))
     (println "Fin")
