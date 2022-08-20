@@ -15,14 +15,14 @@
   (try
     (let [env boot/initial-env]
       (boot/create-gems env)
-      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-grammar
+      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-schema
                                 :param/role-kw :roles/test
                                 :param/request :debug/ribbit-request}))
-      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-grammar
+      (eval/gem-eval (into env {:param/gem-kw  :gem/gem-schema
                                 :param/role-kw :roles/test
                                 :param/request :debug/print-value}))
-      (println :facet/id (parse/select-grammar (into env {:param/gem-kw :gem/gem-grammar
-                                                              :param/input  :facet/id})))
+      (println :facet/id (parse/select-schema (into env {:param/gem-kw :gem/gem-schema
+                                                         :param/input  :facet/id})))
       )
     (println "Fin")
     (catch Exception e

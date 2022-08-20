@@ -45,11 +45,11 @@
   [env]
   (let [gem-kw (:param/gem-kw env)
         gem (kws/env-gem env gem-kw)
-        grammar-kw (:param/grammar-kw env)
+        schema-kw (:param/schema-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
         selectors-kws (kws/gem-selectors-kws)
-        selector {:parse/grammar-kw   grammar-kw
+        selector {:parse/schema-kw    schema-kw
                   :eval/function-name function-name}
         selector (if (some? value)
                    (into selector {:parse/value value})
@@ -59,12 +59,12 @@
 
 (defn create-gems
   [env]
-  (let [env (into env {:param/gem-kw :gem/gem-grammar})
+  (let [env (into env {:param/gem-kw :gem/gem-schema})
         gem (create-gem env)]
-    (create-selector (into env {:param/grammar-kw    :gem/facet-id-grammar
+    (create-selector (into env {:param/schema-kw     :gem/facet-id-schema
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value         :facet/id}))
-    (create-selector (into env {:param/grammar-kw    :gem/facet-descriptors-grammar
+    (create-selector (into env {:param/schema-kw     :gem/facet-descriptors-schema
                                 :param/function-name "spark.parse/select-equal-value"
                                 :param/value         :facet/descriptors}))
     (let [env (into env {:param/role-kw :roles/test})]

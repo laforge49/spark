@@ -3,7 +3,7 @@
     [spark.eval :as eval]
     [spark.kws :as kws]))
 
-(defn select-grammar
+(defn select-schema
   [env]
   (let [gem-kw (:param/gem-kw env)
         gem (kws/env-gem env gem-kw)
@@ -22,9 +22,9 @@
   [env]
   (let [input (:param/input env)
         selector (:param/selector env)
-        grammar-kw (:parse/grammar-kw selector)
+        schema-kw (:parse/schema-kw selector)
         value (:parse/value selector)]
     (if (= input value)
-      grammar-kw
+      schema-kw
       nil)
     ))
