@@ -1,5 +1,6 @@
 (ns spark.boot
   (:require [spark.kws :as kws]
+            [spark.parse :as parse]
             [spark.pretty :as pretty]))
 
 (def gems-atom
@@ -76,4 +77,6 @@
                                  :param/request-params {:param/value "Sam I am"}})))
     (println @gem)
     (pretty/debug @gem)
+    (println :facet/id (parse/select-schema (into env {:param/gem-kw :gem/gem-schema
+                                                       :param/input  (first @gem)})))
     ))

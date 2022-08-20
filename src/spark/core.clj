@@ -20,9 +20,7 @@
                                 :param/request :debug/ribbit-request}))
       (eval/gem-eval (into env {:param/gem-kw  :gem/gem-schema
                                 :param/role-kw :roles/test
-                                :param/request :debug/print-value}))
-      (println :facet/id (parse/select-schema (into env {:param/gem-kw :gem/gem-schema
-                                                         :param/input  (first {:facet/id :gem/x})}))))
+                                :param/request :debug/print-value})))
     (println "Fin")
     (catch Exception e
       (stacktrace/print-stack-trace e))))
