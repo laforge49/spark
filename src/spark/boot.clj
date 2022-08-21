@@ -77,6 +77,7 @@
                                  :param/request-params {:param/value "Sam I am"}})))
     (println @gem)
     (pretty/debug @gem)
-    (println :facets (parse/parse-collection (into env {:param/schema-kw :gem/facets-schema
+    (println)
+    (pretty/debug (parse/parse-collection (into env {:param/schema-kw :gem/facets-schema
                                                        :param/input     @gem})))
     ))
