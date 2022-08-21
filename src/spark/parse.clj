@@ -5,9 +5,9 @@
 
 (defn select-schema-kw
   [env]
-  (let [gem-kw (:param/gem-kw env)
-        gem (kws/env-gem env gem-kw)
-        selectors (get-in @gem (kws/gem-selectors-kws))]
+  (let [schema-kw (:param/schema-kw env)
+        schema (kws/env-gem env schema-kw)
+        selectors (get-in @schema (kws/gem-selectors-kws))]
     (reduce
       (fn [result selector]
         (if (some? result)
