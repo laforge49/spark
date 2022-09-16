@@ -4,6 +4,14 @@
   [env]
    (get @(:env/gems-atom-kw env) (:param/gem-kw env)))
 
+(defn gem-get
+  [env gem-kws]
+  (get-in @(env-gem env) gem-kws))
+
+(defn gem-swap
+  [env gem-kws update]
+  (swap! (env-gem env) (fn [gem] assoc-in gem gem-kws (conj (gem-get env gem-kws) update))))
+
 (defn gem-descriptors-kws
   [env]
   [:facet/descriptors])
