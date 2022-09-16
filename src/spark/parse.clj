@@ -7,7 +7,7 @@
   [env]
   (let [env (assoc env :param/gem-kw (:param/schema-kw env))
         collection-schema (kws/env-gem env)
-        selectors (get-in @collection-schema (kws/schema-selectors-kws))]
+        selectors (get-in @collection-schema (kws/schema-selectors-kws env))]
     (reduce
       (fn [result selector]
         (if (some? result)

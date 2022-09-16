@@ -44,7 +44,7 @@
         schema-kw (:param/schema-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
-        selectors-kws (kws/schema-selectors-kws)
+        selectors-kws (kws/schema-selectors-kws env)
         selector {:parse/schema-kw    schema-kw
                   :eval/function-name function-name}
         selector (if (some? value)
