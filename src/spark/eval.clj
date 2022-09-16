@@ -12,10 +12,9 @@
 
 (defn gem-eval
   [env]
-  (let [role-kw (:param/role-kw env)
-        request-kw (:param/request env)
+  (let [request-kw (:param/request env)
         gem (kws/env-gem env)
-        requests (get-in @gem (kws/gem-requests-kws role-kw))
+        requests (get-in @gem (kws/gem-requests-kws env))
         request (request-kw requests)
         env (into env {:param/function-name (:eval/function-name request)})
         env (into env request)

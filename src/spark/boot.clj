@@ -23,19 +23,17 @@
 (defn create-role
   [env]
   (let [gem (kws/env-gem env)
-        role-kw (:param/role-kw env)
-        requests-kws (kws/gem-requests-kws role-kw)]
+        requests-kws (kws/gem-requests-kws env)]
     (swap! gem assoc-in requests-kws {})))
 
 (defn create-request
   [env]
   (let [gem (kws/env-gem env)
-        role-kw (:param/role-kw env)
         request-kw (:param/request-kw env)
         function-name (:param/function-name env)
         request-params (get env :param/request-params {})
         request (into {:eval/function-name function-name} request-params)
-        requests-kws (kws/gem-requests-kws role-kw)
+        requests-kws (kws/gem-requests-kws env)
         requests (get-in @gem requests-kws)
         requests (into requests {request-kw request})]
     (swap! gem assoc-in requests-kws requests)))
