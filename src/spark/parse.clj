@@ -5,8 +5,8 @@
 
 (defn select-schema-kw
   [env]
-  (let [collection-schema-kw (:param/schema-kw env)
-        collection-schema (kws/env-gem env collection-schema-kw)
+  (let [env (assoc env :param/gem-kw (:param/schema-kw env))
+        collection-schema (kws/env-gem env)
         selectors (get-in @collection-schema (kws/schema-selectors-kws))]
     (reduce
       (fn [result selector]

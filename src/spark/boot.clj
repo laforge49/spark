@@ -22,16 +22,14 @@
 
 (defn create-role
   [env]
-  (let [gem-kw (:param/gem-kw env)
-        gem (kws/env-gem env gem-kw)
+  (let [gem (kws/env-gem env)
         role-kw (:param/role-kw env)
         requests-kws (kws/gem-requests-kws role-kw)]
     (swap! gem assoc-in requests-kws {})))
 
 (defn create-request
   [env]
-  (let [gem-kw (:param/gem-kw env)
-        gem (kws/env-gem env gem-kw)
+  (let [gem (kws/env-gem env)
         role-kw (:param/role-kw env)
         request-kw (:param/request-kw env)
         function-name (:param/function-name env)
@@ -44,8 +42,7 @@
 
 (defn create-selector
   [env]
-  (let [gem-kw (:param/gem-kw env)
-        gem (kws/env-gem env gem-kw)
+  (let [gem (kws/env-gem env)
         schema-kw (:param/schema-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
