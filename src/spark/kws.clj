@@ -13,8 +13,8 @@
   (conj (gem-role-kws env) :role/requests))
 
 (defn gem-request-kws
-  [env role-kw request-kw]
-  (conj (gem-requests-kws env) request-kw))
+  [env request-kw]
+  (conj (gem-requests-kws env) (:param/request-kw env)))
 
 (defn schema-selectors-kws
   []
