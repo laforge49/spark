@@ -49,7 +49,7 @@
         schema-kw (:param/schema-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
-        selectors-kws (kws/gem-selectors-kws)
+        selectors-kws (kws/schema-selectors-kws)
         selector {:parse/schema-kw    schema-kw
                   :eval/function-name function-name}
         selector (if (some? value)
@@ -78,6 +78,6 @@
     (println @gem)
     (pretty/debug @gem)
     (println)
-    (pretty/debug (parse/parse-collection (into env {:param/schema-kw :gem/facets-schema
-                                                       :param/input     @gem})))
+    (pretty/debug (parse/parser (into env {:param/schema-kw         :gem/facets-schema
+                                                       :param/input @gem})))
     ))

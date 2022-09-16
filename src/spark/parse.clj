@@ -5,9 +5,9 @@
 
 (defn select-schema-kw
   [env]
-  (let [schema-kw (:param/schema-kw env)
-        schema (kws/env-gem env schema-kw)
-        selectors (get-in @schema (kws/gem-selectors-kws))]
+  (let [collection-schema-kw (:param/schema-kw env)
+        collection-schema (kws/env-gem env collection-schema-kw)
+        selectors (get-in @collection-schema (kws/schema-selectors-kws))]
     (reduce
       (fn [result selector]
         (if (some? result)
@@ -17,17 +17,23 @@
       nil
       selectors)))
 
-(defn parse-collection
+(defn parser
   [env]
-  (let [collection-input (:param/input env)]
-    (reduce
-      (fn [post-map item]
-        (let [schema-kw (select-schema-kw (into env {:param/input item}))
-              post-list (get post-map schema-kw [])
-              post-list (conj post-list item)]
-          (assoc post-map schema-kw post-list)))
-      {}
-      collection-input)))
+  (let [collection-schema-kw (:param/schema-kw env)
+        collection-input (:param/input env)
+        _ (println :collection-schema-kw collection-schema-kw)
+        post-map
+        (reduce
+          (fn [post-map item]
+            (let [item-schema-kw (select-schema-kw (into env {:param/input item}))
+                  post-list (get post-map item-schema-kw [])
+                  post-list (conj post-list item)]
+              (println :item-schema-kw item-schema-kw)
+              (println :item item)
+              (assoc post-map item-schema-kw post-list)))
+          {}
+          collection-input)]
+    {collection-schema-kw post-map}))
 
 (defn select-equal-key
   [env]

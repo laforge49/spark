@@ -10,12 +10,12 @@
 
 (defn gem-requests-kws
   [role-kw]
-  [:facet/descriptors :descriptors/roles role-kw :role/requests])
+  (conj (gem-role-kws role-kw) :role/requests))
 
 (defn gem-request-kws
   [role-kw request-kw]
-  [:facet/descriptors :descriptors/roles role-kw :role/requests request-kw])
+  (conj (gem-requests-kws role-kw) request-kw))
 
-(defn gem-selectors-kws
+(defn schema-selectors-kws
   []
   [:facet/descriptors :parse/selectors])
