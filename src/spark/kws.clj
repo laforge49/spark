@@ -2,19 +2,20 @@
 
 (defn env-gem
   [env]
-   (get @(:env/gems-atom-kw env) (:param/gem-kw env)))
+  (get @(:env/gems-atom-kw env) (:param/gem-kw env)))
 
 (defn gem-get
   [env]
   (get-in @(env-gem env) (:param/gem-kws env)))
 
-(defn gem-swap
+(defn gem-update
   [env]
   (swap! (env-gem env)
          (fn [gem]
-           (assoc-in gem
-                     (:param/gem-kws env)
-                     (conj (gem-get env) (:param/gem-update env))))))
+           (let [kws (:param/gem-kws env)]
+             (assoc-in gem
+                       kws
+                       (conj (get-in gem kws) (:param/gem-update env)))))))
 
 (defn gem-descriptors-kws
   [env]
