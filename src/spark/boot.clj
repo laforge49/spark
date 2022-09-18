@@ -49,8 +49,7 @@
                    (into selector {:parse/value value})
                    selector)]
     (kws/gem-update (into env {:param/gem-kws (kws/schema-selectors-kws env)
-                               :param/gem-update selector}))
-    ))
+                               :param/gem-update selector}))))
 
 (defn create-gems
   [env]
@@ -73,5 +72,4 @@
     (pretty/debug @gem)
     (println)
     (pretty/debug (parse/parser (into env {:param/schema-kw :gem/facets-schema
-                                           :param/input     @gem})))
-    ))
+                                           :param/input     @gem})))))
