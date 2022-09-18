@@ -40,18 +40,17 @@
 
 (defn create-selector
   [env]
-  (let [gem (kws/env-gem env)
-        schema-kw (:param/schema-kw env)
+  (let [schema-kw (:param/schema-kw env)
         function-name (:param/function-name env)
         value (:param/value env)
-        selectors-kws (kws/schema-selectors-kws env)
         selector {:parse/schema-kw    schema-kw
                   :eval/function-name function-name}
         selector (if (some? value)
                    (into selector {:parse/value value})
-                   selector)
-        selectors (get-in @gem selectors-kws [])]
-    (swap! gem assoc-in selectors-kws (conj selectors selector))))
+                   selector)]
+    (kws/gem-update (into env {:param/gem-kws (kws/schema-selectors-kws env)
+                               :param/gem-update selector}))
+    ))
 
 (defn create-gems
   [env]
@@ -73,6 +72,6 @@
     (println @gem)
     (pretty/debug @gem)
     (println)
-    (pretty/debug (parse/parser (into env {:param/schema-kw         :gem/facets-schema
-                                                       :param/input @gem})))
+    (pretty/debug (parse/parser (into env {:param/schema-kw :gem/facets-schema
+                                           :param/input     @gem})))
     ))
